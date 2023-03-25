@@ -1,0 +1,81 @@
+package emicalci;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Emicalculator {
+	static WebDriver driver;
+	public void openbrowser() {
+		
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://emicalculator.net/");
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+		}
+	public void carloan() {
+		try {
+		Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//li[@id='car-loan']")).click();
+		driver.findElement(By.xpath("//input[@id='loanamount']")).clear();
+		driver.findElement(By.xpath("//input[@id='loanamount']")).sendKeys("15,00,000");
+
+		}
+	public void interest(){
+		try {
+		Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		//driver.findElement(By.xpath("//input[@id='loaninterest']")).clear();
+
+		//driver.findElement(By.xpath("//input[@id='loaninterest']")).sendKeys("09.5");
+		WebElement low =driver.findElement(By.xpath("//div[@id='loaninterestslider']")); //one end slider bar
+		int width=low.getSize().width;
+		Actions s = new Actions(driver);
+		s.dragAndDropBy(low, (int) (width* (0.0010)), 0);
+		s.build().perform();
+		driver.manage().timeouts().pageLoadTimeout(1000000,TimeUnit.SECONDS);
+	}
+	public void tenure(){
+		try {
+		Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//input[@id='loanterm']")).clear();
+		driver.findElement(By.xpath("//input[@id='loanterm']"));
+		}
+	public void closebrowser(){
+		try {
+		Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		driver.quit();
+		}
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\nagaraju\\Downloads\\chromedriver_win32(6)\\chromedriver.exe");
+		Emicalculator emi = new Emicalculator();
+		emi.openbrowser();
+		emi.carloan();
+		emi.interest();
+		emi.tenure();
+		emi.closebrowser();
+		
+
+	}
+
+}

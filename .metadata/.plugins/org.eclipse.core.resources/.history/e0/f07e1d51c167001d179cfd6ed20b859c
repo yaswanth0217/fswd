@@ -1,0 +1,24 @@
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Week11 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\nagaraju\\Downloads\\chromedriver_win32 (5)\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://www.google.com");
+		WebElement srchbar=driver.findElement(By.name("q"));
+        srchbar.sendKeys("Myntra");
+        srchbar.sendKeys(Keys.ENTER);
+		driver.manage().window().maximize();
+		
+
+	}
+
+}

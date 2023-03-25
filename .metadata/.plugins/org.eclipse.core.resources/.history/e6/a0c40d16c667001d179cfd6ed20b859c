@@ -1,0 +1,41 @@
+package selenium;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Week11 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		Map<String,Object>prefs=new HashMap<String,Object>();
+		prefs.put("profile.default_content_setting_values",2);
+		ChromeOptions options=new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\nagaraju\\Downloads\\chromedriver_win32 (5)\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://www.google.com");
+		WebElement srchbar=driver.findElement(By.name("q"));
+        srchbar.sendKeys("Myntra");
+        srchbar.sendKeys(Keys.ENTER);
+		driver.manage().window().maximize();
+		WebElement myntra=driver.findElement(By.xpath("//h3[@class='LC20lb MBeuO DKV0Md']"));
+        myntra.click();
+        WebElement profile=driver.findElement(By.xpath("//span[@class='desktop-userTitle']"));
+        profile.click();
+        WebElement login=driver.findElement(By.xpath("//a[@class='desktop-linkButton']"));
+        login.click();
+        WebElement mobileno=driver.findElement(By.xpath("//span[@class='form-control mobileNumberInput']"));
+        mobileno.sendKeys("12345567890");
+        Thread.sleep(2000);
+        mobileno.sendKeys(Keys.ENTER);
+        
+	}
+
+}
